@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    container_name: 'app'
+    image: homeassistant/home-assistant:latest
+    restart: unless-stopped
+#    ports:
+#      - 8123:8123
+    privileged: true
+    volumes:
+      - app_volume:/config
+      - /etc/localtime:/etc/localtime:ro
+    network_mode: host
+    environment:
+      - DISABLE_JEMALLOC=true
+volumes:
+  app_volume:
